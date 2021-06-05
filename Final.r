@@ -1,5 +1,6 @@
 rm(list = ls())
 library(sandwich)
+library(lmtest)
 setwd("C:/Users/natty/OneDrive/Documents/Econ 143")
 data <- read.csv("Final Data.csv")
 head(data)
@@ -15,6 +16,8 @@ white <- lm(I(error1^2) ~ Unemployment.Difference + TB3MS, data = data)
 whitesum <- summary(white)
 whitesum
 plot(as.Date(data$ï..Date), data$error1,xlab = "Dates", ylab = "Residuals")
+#Durbin-Watson Test for Autocorrelation
+dwtest(firstreg)
 #HAC Estimators First Regression
 vcovmat <- vcovHAC(firstreg)
 vcovmat
@@ -47,6 +50,7 @@ vcovmat2
 beta1t2 <- secondregsum$coefficients[1,1]/vcovmat2[1,1]
 beta1t2
 beta1p2 <- 1 - pnorm(beta1t2)
+beta1p2
 beta1SE2 <- sqrt(vcovmat2[1,1])
 beta1SE2
 beta2t2 <- secondregsum$coefficients[2,1]/vcovmat2[2,2]
@@ -73,3 +77,4 @@ beta5p2 <- 1 - pnorm(beta5t2)
 beta5p2
 beta5SE2 <- sqrt(vcovmat2[5,5])
 beta5SE2
+
