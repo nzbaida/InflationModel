@@ -77,4 +77,10 @@ beta5p2 <- 1 - pnorm(beta5t2)
 beta5p2
 beta5SE2 <- sqrt(vcovmat2[5,5])
 beta5SE2
+beta6t2 <- secondregsum$coefficients[6,1]/vcovmat2[6,6]
+beta6t2
+beta6p2 <- 1 - pnorm(beta6t2)
+beta6p2
+beta6SE2 <- sqrt(vcovmat2[6,6])
+beta6SE2
 
